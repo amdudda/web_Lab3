@@ -25,7 +25,7 @@
     <table id="swatches">
         <tr>
             <th>Color</th>
-            <th>Hex Code</th>
+            <th class="coltwo">Hex Code</th>
         </tr>
     </table>
 </div>
@@ -35,7 +35,7 @@
     document.getElementById("newColor").addEventListener("click",changeColor);
     document.getElementById("saveColor").addEventListener("click",addToTable);
 
-    var hexColor;
+    var hexColor = "000000";
 
     function changeColor() {
         // Pick a random number, convert it to a hex value, and update the color of the text
@@ -47,7 +47,7 @@
             hexColor = "0" + hexColor;
         }
 
-        document.getElementById("hexcode").innerHTML = "Color is: #" + hexColor;
+        document.getElementById("hexcode").innerHTML = "Color is: #" + hexColor.toUpperCase();
         document.getElementById("sampler").setAttribute("style","color: #" + hexColor);
         //alert(hexColor);
     }
@@ -57,7 +57,7 @@
         var myTable = document.getElementById("swatches");
         var newRow = document.createElement("tr");
         var cell1 = "<td style='background: #" + hexColor + "'></td>";
-        var cell2 = "<td>#" + hexColor + "</td>";
+        var cell2 = "<td  class='coltwo'>#" + hexColor.toUpperCase() + "</td>";
 
         newRow.innerHTML = cell1 + cell2;
         myTable.appendChild(newRow);

@@ -22,3 +22,11 @@
     clear: both;
     padding-top: 20px;
 }
+
+th {
+    text-decoration: underline;
+}
+
+.coltwo {
+    padding-left: 10px;
+}
