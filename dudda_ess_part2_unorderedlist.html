@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Unordered List</title>
+</head>
+<body>
+<h1>Shopping List</h1>
+<ul id="shoppinglist"></ul>
+<input type="text" name="grocery" id="grocery"/>
+<button name="additem" id="additem">Add item to shopping list.</button>
+<script>
+    document.getElementById("additem").addEventListener("click", addGroceries);
+
+    function addGroceries() {
+        var shoplist = document.getElementById("shoppinglist");
+        var itemToAdd = document.getElementById("grocery").value;
+        var newListItem = document.createElement("li");
+
+        if (validateText(itemToAdd)) {
+            newListItem.innerHTML = itemToAdd;
+            shoplist.appendChild(newListItem);
+        }
+        // let's simplify data entry by moving the focus back to the input box.
+        document.getElementById("grocery").focus();
+    }
+
+    function validateText(toCheck) {
+        if (toCheck == "") return false;
+        if (toCheck.length > 50 ) {
+            alert("Your item is longer than 50 characters.  Please enter a shorter string of text.")
+            return false;
+        }  // need to add alert message
+        return true;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+#picker {
+    border: 1px solid black;
+    width: 33%;
+    height: 120px;
+    float: left;
+    padding-left: 20px;
+}
+
+#sampler {
+    border: 1px solid black;
+    height: 120px;
+    width: 60%;
+    float: right;
+    overflow: hidden;
+}
+
+#sampler>p {
+    margin-top:0;
+}
+
+#saved_results {
+    clear: both;
+    padding-top: 20px;
+}

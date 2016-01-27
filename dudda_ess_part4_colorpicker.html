@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- css styling -->
+    <link rel="stylesheet" href="dudda_ess_part4.css" type="text/css" />
+    <title>Random Color Generator</title>
+</head>
+<body>
+<div id="head">
+    <h1>Text Color Picker</h1>
+</div>
+<div id="picker">
+    <!-- two buttons, one to generate a random color, the other to save the color to the table-->
+    <p><button name="newColor" id="newColor">New Random Color</button></p>
+    <p><button name="saveColor" id="saveColor">Save This Color</button></p>
+    <p id="hexcode"></p>
+</div>
+<div id="sampler">
+    <!-- This displays the sample text output.-->
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur....</p>
+</div>
+<div id="saved_results">
+    <!-- a table storing save color selections goes here -->
+    <table id="swatches">
+        <tr>
+            <th>Color</th>
+            <th>Hex Code</th>
+        </tr>
+    </table>
+</div>
+
+<!-- JavaScript to update page contents & layout. -->
+<script>
+    document.getElementById("newColor").addEventListener("click",changeColor);
+    document.getElementById("saveColor").addEventListener("click",addToTable);
+
+    var hexColor;
+
+    function changeColor() {
+        // Pick a random number, convert it to a hex value, and update the color of the text
+        // NB: hex #FFFFFF = dec 16777215
+        var decimalColor = Math.floor((Math.random() * 16777215));  // from http://www.w3schools.com/jsref/jsref_random.asp
+        hexColor = decimalColor.toString(16);  // showed up in DuckDuckGo when I searched for "javascript decimal to hexadecimal"
+
+        while (hexColor.length < 6) {
+            hexColor = "0" + hexColor;
+        }
+
+        document.getElementById("hexcode").innerHTML = "Color is: #" + hexColor;
+        document.getElementById("sampler").setAttribute("style","color: #" + hexColor);
+        //alert(hexColor);
+    }
+
+    function addToTable() {
+        // save a color to the table.  color swatch plus color hex code.
+        var myTable = document.getElementById("swatches");
+        var newRow = document.createElement("tr");
+        var cell1 = "<td style='background: #" + hexColor + "'></td>";
+        var cell2 = "<td>#" + hexColor + "</td>";
+
+        newRow.innerHTML = cell1 + cell2;
+        myTable.appendChild(newRow);
+    }
+</script>
+</body>
+</html>

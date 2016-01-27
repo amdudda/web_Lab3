@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- let's use bootstrap for layout -->
+    <!-- Set page width equal to browser window width -->
+    <meta name="viewport" content="width=device-width intial-scale=1"/>
+    <!-- download bootstrap file -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+
+    <title>Movie Ratings</title>
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron text-center" style="background:gold">
+        <h1>Movie Ratings Galore</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <h2>Star Wars: Episode 7</h2>
+            <h3 class="rating">4 stars</h3>
+            <p>The plot can be summarized as "pew! pew! pewpewpew pew!"</p>
+        </div>
+        <div class="col-sm-4">
+            <h2>Tampopo</h2>
+            <h3 class="rating">5 stars</h3>
+            <p>Japanese ramen Western.</p>
+        </div>
+        <div class="col-sm-4">
+            <h2>Lilo and Stitch</h2>
+            <h3 class="rating">5 stars</h3>
+            <p>On the value of chosen family.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <h2>Iron Man 2</h2>
+            <h3 class="rating">1 star</h3>
+            <p>This main character was so offensive I stopped the movie a third of the way through and returned it to
+                Netflix unfinished.</p>
+        </div>
+    </div>
+</div>
+
+<!-- this script replaces the content of the ratings with glyphicon stars -->
+<!-- no method calls needed - this runs when the page loads -->
+<script>
+
+    var allRatings = document.getElementsByClassName("rating");
+
+    for (var i = 0; i < allRatings.length; i++) {
+        var ratingText = allRatings[i].innerText;
+        var rateNum = ratingText.substring(0, 1);
+        console.log(rateNum);
+        var stars = "";
+        for (var j = 0; j < rateNum; j++) {
+            // ordinarily I'd use CSS to tweak the stars' colors, but let's focus on JavaScript, neh?
+            stars += "<span class='glyphicon glyphicon-star-empty' style='color:gold'></span>"
+        }
+
+        allRatings[i].innerHTML = stars;
+    }
+
+</script>
+</body>
+</html>

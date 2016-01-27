@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pixel counter</title>
+
+</head>
+<body>
+<h1>Current number of pixels visible in the window is:</h1>
+<h1 id="pixelcount"></h1>
+<script>
+    window.addEventListener("load", displayPixelDepth);
+    window.addEventListener("resize", displayPixelDepth);
+
+    function displayPixelDepth() {
+        var whereToDisplay = document.getElementById("pixelcount");
+
+        var hPixel = window.innerWidth;
+        var vPixel = window.innerHeight;
+        var pCount = hPixel * vPixel;
+
+        whereToDisplay.innerHTML = hPixel + " * " + vPixel + " = " + pCount;
+        // debugging: alert(hPixel)
+    }
+</script>
+</body>
+</html>
