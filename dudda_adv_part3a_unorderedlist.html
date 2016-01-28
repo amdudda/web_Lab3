@@ -59,3 +59,9 @@
 </script>
 </body>
 </html>
+<!--
+In Essentials Part 2, you used user input to build HTML elements. On this page, try entering some HTML characters in the input box. What happens? How could this cause problems for a website? What could you do to account for this?
+-->
+<!--
+The characters appear just fine.  The problem is these particular characters have specific meanings in HTML headers and URLs, so they could potentially be used maliciously.  One thing that a programmer could do would be to convert these characters to escape sequences (much as we did data sanitization for SQL input in Java last semester).  The method used here also works, though there are contexts where being able to use an apostrophe is important - such as when typing names ("O'Malley", "Lupita Nyong'o", so sanitization might be a better approach in some contexts.
+-->
