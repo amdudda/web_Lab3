@@ -49,7 +49,7 @@ as part of coursework for Lab 3.
 
 </div>
 
-<p>Some <i>italic text</i> that is <i>not</i> inside an unordered list...</p>
+<p>Some <i>italic text</i> that is <i class="copyme">not</i> inside an unordered list...</p>
 <ul>
     <li>And some <i>italic</i> text inside a list</li>
 </ul>
@@ -63,6 +63,8 @@ as part of coursework for Lab 3.
     countParas();
     growBolds();
     changeItalicColorUL();
+    pushCopy();
+    setupListener();
 
     //putting my functions here so it's easier to track which chunk of code is handling which question.
 
@@ -83,14 +85,65 @@ as part of coursework for Lab 3.
 
     // Use selectors</i> to specifically identify <i>all</i> italic text within unordered lists. Change this italic text to the color of your choice.
     function changeItalicColorUL() {
-        var unLists = document.getElementsByTagName("ul");
-        var italicInUL = unLists.getElementsByTagName("i");  // FIXIT: this doesn't actually work.
+        var italicInUL = document.querySelectorAll("ul i"); // understands CSS selector syntax
 
         for (var j = 0; j < italicInUL.length; j++) {
             italicInUL[j].setAttribute("style","color:blue")
         }
     }
 
+    //Copy the text from all span elements with class="copyme". Sort it in reverse order, and concatenate all the strings together. Add a paragraph containing this information to the div tag with id="copyhere"
+    function pushCopy() {
+        var arrToCopy = document.querySelectorAll("span.copyme"); // select only span with class 'copyme', not anything else that might be in the same class.
+        // we also want the text contents of the elements, not the elements themselves; let's initialize some variables to help with this.
+        var listOfValues = [];
+        var toPrint = "";
+
+        // fetch our text
+        for (var i = 0; i < arrToCopy.length; i++) {
+            listOfValues[i] = arrToCopy[i].innerText;
+        }
+
+        // get our stuff in alpha order, then reverse that
+        listOfValues.sort();
+        listOfValues.reverse();
+
+        // convert the array to a text string
+        for (var i = 0; i < listOfValues.length; i++) {
+            toPrint += listOfValues[i] + " ";
+        }
+
+        // and park it in the appropriate place in the document
+        var insertPoint = document.getElementById("copyhere");
+        insertPoint.style = "color:red";  // just because I feel like doing this - not actually part of the assignment spec.
+        var newPara = document.createElement("p");
+        newPara.innerText = toPrint;
+        insertPoint.appendChild(newPara);
+    }
+
+//    Add a mouseover and mouseout listener to the 6th list element. Mousing over this element will cause an image of your choice to appear below the list, mouse out will remove it.
+    var sixthLI;
+    function setupListener() {
+        sixthLI = document.getElementsByTagName("li")[5];
+        //alert(sixthLI.innerText);
+        sixthLI.addEventListener("mouseover",showImage);
+        sixthLI.addEventListener("mouseout",hideImage);
+    }
+
+
+    function showImage() {
+        var newImg = document.createElement("img");
+        newImg.src = "yay.jpg";
+        newImg.alt = "The word 'YAY!' in big red capital letters.";
+        newImg.id = "yay";  // giving it an ID so we can remove it later.
+        sixthLI.appendChild(newImg);
+    }
+
+    function hideImage() {
+        sixthLI.removeChild(document.getElementById("yay"));
+    }
+
 </script>
 </body>
 </html>
+<!-- Image credit: https://pixabay.com/en/perspective-3d-text-yay-175642/ -->
