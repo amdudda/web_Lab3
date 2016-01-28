@@ -9,10 +9,8 @@
 <ul id="shoppinglist"></ul>
 <input type="text" name="grocery" id="grocery"/>
 <button name="additem" id="additem">Add item to shopping list.</button>
-<p id="warning"></p>
 <script>
     document.getElementById("additem").addEventListener("click", addGroceries);
-    document.getElementById("grocery").addEventListener("keypress", checkChar);
 
     function addGroceries() {
         var shoplist = document.getElementById("shoppinglist");
@@ -34,26 +32,6 @@
             return false;
         }  // need to add alert message
         return true;
-    }
-
-//    Add a key listener that displays a warning message of some kind for the user if they type any of the not allowed
-    // characters when typing in the text box. You can decide how annoying you want to be about this.
-    // verboten chars are < > & " and '
-    var firstnotice = false;
-    function checkChar() {
-        var badChars = [60,62,38,34,39] // keycodes for the verboten characters
-        document.getElementById("grocery").focus;
-
-        if (badChars.indexOf(event.keyCode) != -1) {
-            if (!firstnotice) {
-                alert('You typed an invalid character.  < > & " and \' are not permitted in this field.');
-                firstnotice = true;
-            }
-            document.getElementById("warning").innerHTML = "<b>WARNING: &lt; and &gt; and &amp; and &quot; and &apos; are verboten!</b>";
-            event.returnValue = false;  // gleaned this from http://mistonline.in/wp/block-key-press-using-javascript/
-        } else {
-            document.getElementById("warning").innerHTML = "";
-        }
     }
 </script>
 </body>
