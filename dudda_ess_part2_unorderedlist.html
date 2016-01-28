@@ -23,8 +23,9 @@
             newListItem.innerHTML = itemToAdd;
             shoplist.appendChild(newListItem);
         }
-        // let's simplify data entry by moving the focus back to the input box.
+        // let's simplify data entry by moving the focus back to the input box and clearing it.
         document.getElementById("grocery").focus();
+        document.getElementById("grocery").value = "";
     }
 
     function validateText(toCheck) {
